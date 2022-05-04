@@ -6,13 +6,36 @@ const { Product, Category, Tag, ProductTag } = require('../../models');
 // get all products
 router.get('/', (req, res) => {
   // find all products
-  // be sure to include its associated Category and Tag data
+  Product.findAll({
+    // be sure to include its associated category and tag
+    include:[{
+        model:Category,
+        include:[Tag]
+    }]
+  })
+  .then (dbCategory => {
+      res.join(dbCategory);
+  })
+  .catch(err => {
+      console.log(err); res.status(500).json({msg: "an error has occured", err});
+  });
 });
 
 // get one product
 router.get('/:id', (req, res) => {
-  // find a single product by its `id`
-  // be sure to include its associated Category and Tag data
+  // find a single product by its `id
+  Product.findByBk(req.params.id, {
+      include:[{
+        // be sure to include its associated Category and Tag data
+          model:Category,
+          include:[Tag]
+      }]
+  }) .then (dbProduct => {
+      res.json(dbProduct);
+  }) .catch (err => {
+      console.log(err);
+      res.status(500).json({msg: "an error has occured", err});
+  });
 });
 
 // create new product
@@ -91,6 +114,16 @@ router.put('/:id', (req, res) => {
 
 router.delete('/:id', (req, res) => {
   // delete one product by its `id` value
+  Product.destroy ({
+      where: {
+          id: req.params.id
+      }
+  }).then (delProduct => {
+      res.json(delProduct)
+  }).catch (err => {
+      console.log(err);
+      res.status(500).json({"an error occured", err});
+  })
 });
 
 module.exports = router;
