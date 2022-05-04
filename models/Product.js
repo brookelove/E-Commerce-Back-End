@@ -11,7 +11,7 @@ Product.init(
   {
     // define columns
     id: {
-        type: INTEGER,
+        type: DataTypes.INTEGER,
         allowNull: false,
         primaryKey: true,
         autoIncrement: true
@@ -21,7 +21,7 @@ Product.init(
         allowNull: false
     },
     price: {
-        type: DECIMAL,
+        type: DataTypes.DECIMAL,
         allowNull: true,
         validate: {
             isDecimal: true
@@ -36,7 +36,7 @@ Product.init(
         }
     },
     category_id: {
-        type: INTEGER,
+        type: DataTypes.INTEGER,
         // this might not be the correct syntax
         include: [category.id]
     }

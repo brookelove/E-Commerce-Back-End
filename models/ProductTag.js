@@ -8,18 +8,18 @@ ProductTag.init(
   {
     // define columns
     id: {
-        type: INTEGER,
+        type: DataTypes.INTEGER,
         allowNull: false,
         primaryKey: true,
         autoIncrement: true
     },
     product_tag: {
-        type: INTEGER,
+        type: DataTypes.INTEGER,
         // references back to the product id
         include: [product.id]
     },
     tag_id: {
-        type: INTEGER,
+        type: DataTypes.INTEGER,
         // ferences back to the tag id
         include: [tag.id]
     }
