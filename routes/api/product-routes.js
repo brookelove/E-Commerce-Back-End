@@ -122,7 +122,7 @@ router.delete('/:id', (req, res) => {
       res.json(delProduct)
   }).catch (err => {
       console.log(err);
-      res.status(500).json({"an error occured", err});
+      res.status(500).json({msg: "an error occured", err});
   })
 });
 
