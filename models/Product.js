@@ -38,7 +38,10 @@ Product.init(
     category_id: {
         type: DataTypes.INTEGER,
         // this might not be the correct syntax
-        include: [category.id]
+        references: {
+            model: "category",
+            key: "id",
+          },
     }
   },
   {
