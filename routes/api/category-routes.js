@@ -10,7 +10,7 @@ router.get('/', (req, res) => {
     include:[Product]
   })
   .then (dbCategory => {
-      res.join(dbCategory);
+      res.json(dbCategory);
   })
   .catch(err => {
       console.log(err); res.status(500).json({msg: "an error has occured", err});
@@ -19,7 +19,7 @@ router.get('/', (req, res) => {
 
 router.get('/:id', (req, res) => {
   // find all categories
-  Category.findByPk({
+  Category.findByPk(req.params.id, {
     // be sure to include its associated Products
     include:[Product]
   })
