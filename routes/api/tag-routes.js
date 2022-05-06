@@ -47,7 +47,7 @@ router.put('/:id', (req, res) => {
           id: req.params.id
       }
     }).then (updatedTag => {
-          res.join(updatedTag);  
+          res.json(updatedTag);  
     }).catch (err => {
           console.log(err);
           res.status(500).json({msg: " an error has occured", err});

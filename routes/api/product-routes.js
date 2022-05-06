@@ -11,7 +11,7 @@ router.get('/', (req, res) => {
         include:[Tag]
   })
   .then (dbCategory => {
-      res.join(dbCategory);
+      res.json(dbCategory);
   })
   .catch(err => {
       console.log(err); res.status(500).json({msg: "an error has occured", err});
